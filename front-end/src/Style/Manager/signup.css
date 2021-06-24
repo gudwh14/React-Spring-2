@@ -1,0 +1,30 @@
+.signup-input-box {
+    width: 250px;
+}
+
+.signup-input-title-span {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.address-find-button {
+    display: inline-block;
+    width: 35px;
+    text-align: center;
+    font-size: 13px;
+    padding: 5px;
+    margin-left: 10px;
+    border-radius: 0.32rem;
+    background-color: #7a4a4a;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+}
+
+.address-input {
+    width: 205px;
+    height: 40px;
+    margin-bottom: 20px;
+    outline-color: #7457f6;
+    padding: 1px 10px;
+}

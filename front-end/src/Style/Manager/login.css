@@ -1,0 +1,19 @@
+.login-box {
+    width: 200px;
+}
+
+.notice-box {
+    margin-top: 5px;
+    display: flex;
+}
+
+.notice-span {
+    font-size: 12px;
+}
+
+.link-span {
+    font-size: 12px;
+    font-weight: 500;
+    margin-left: auto;
+    cursor: pointer;
+}

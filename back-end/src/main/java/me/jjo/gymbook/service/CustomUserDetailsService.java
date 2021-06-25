@@ -37,7 +37,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         return userJpaRepository.findOneWithAuthoritiesByPhone(phone)
                 .map(user -> new CustomUserDetails(user))
-                .orElseThrow(() -> new UsernameNotFoundException(phone + " -> 데이터베이스에서 찾을 수 없습니다."));
+                .orElseThrow(() -> new UsernameNotFoundException("계정이 존재하지 않습니다."));
     }
 
     @Transactional

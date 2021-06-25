@@ -32,7 +32,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     @Transactional
-    public UserDetails loadUserByUsername(final String phone) throws UsernameNotFoundException{
+    public UserDetails loadUserByUsername(final String phone) {
         logger.debug("loadUserByUsername : {}", phone);
 
         return userJpaRepository.findOneWithAuthoritiesByPhone(phone)
@@ -42,6 +42,10 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Transactional
     public UserSignUpDto signUp(UserSignUpDto userSignUpDto) {
+        if(userJpaRepository.findOneWithAuthoritiesByPhone(userSignUpDto.getPhone()).isPresent()) {
+            throw new RuntimeException("이미 존재하는 회원입니다.");
+        }
+
         Authority authority = Authority.builder()
                 .authorityName("ROLE_USER")
                 .build();

@@ -1,8 +1,8 @@
 package me.jjo.gymbook.controller;
 
-import me.jjo.gymbook.dto.TokenDto;
-import me.jjo.gymbook.dto.UserLoginDto;
-import me.jjo.gymbook.dto.UserSignUpDto;
+import me.jjo.gymbook.dto.TokenDTO;
+import me.jjo.gymbook.dto.UserLoginDTO;
+import me.jjo.gymbook.dto.UserSignUpDTO;
 import me.jjo.gymbook.jwt.JwtFilter;
 import me.jjo.gymbook.jwt.TokenProvider;
 import me.jjo.gymbook.service.CustomUserDetailsService;
@@ -43,8 +43,8 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<UserSignUpDto> signUp(@Valid @RequestBody UserSignUpDto userSignUpDto) {
-        UserSignUpDto userDto = customUserDetailsService.signUp(userSignUpDto);
+    public ResponseEntity<UserSignUpDTO> signUp(@Valid @RequestBody UserSignUpDTO userSignUpDto) {
+        UserSignUpDTO userDto = customUserDetailsService.signUp(userSignUpDto);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{phone}")
@@ -56,7 +56,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<TokenDto> login(@Valid @RequestBody UserLoginDto userLoginDto) {
+    public ResponseEntity<TokenDTO> login(@Valid @RequestBody UserLoginDTO userLoginDto) {
         logger.debug("user Info : {}",userLoginDto.toString());
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(userLoginDto.getPhone(), userLoginDto.getPassword());
@@ -71,7 +71,7 @@ public class UserController {
 
         return ResponseEntity.ok()
                 .headers(httpHeaders)
-                .body(TokenDto
+                .body(TokenDTO
                         .builder()
                         .token(jwt)
                         .build());

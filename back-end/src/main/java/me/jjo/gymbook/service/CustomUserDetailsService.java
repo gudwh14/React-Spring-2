@@ -1,13 +1,12 @@
 package me.jjo.gymbook.service;
 
-import me.jjo.gymbook.dto.UserSignUpDto;
+import me.jjo.gymbook.dto.UserSignUpDTO;
 import me.jjo.gymbook.entity.Authority;
 import me.jjo.gymbook.entity.User;
 import me.jjo.gymbook.repository.UserJpaRepository;
 import me.jjo.gymbook.userDetails.CustomUserDetails;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -41,7 +40,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     @Transactional
-    public UserSignUpDto signUp(UserSignUpDto userSignUpDto) {
+    public UserSignUpDTO signUp(UserSignUpDTO userSignUpDto) {
         if(userJpaRepository.findOneWithAuthoritiesByPhone(userSignUpDto.getPhone()).isPresent()) {
             throw new RuntimeException("이미 존재하는 회원입니다.");
         }

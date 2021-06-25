@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @Builder
 @ToString
-public class UserLoginDto {
+public class UserLoginDTO {
     @NotNull
     @Size(min = 9, max = 15)
     private String phone;

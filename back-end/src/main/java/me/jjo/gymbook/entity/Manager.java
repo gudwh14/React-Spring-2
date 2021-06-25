@@ -32,7 +32,7 @@ public class Manager {
     @Column(name = "location", length = 35, nullable = false)
     private String location;
 
-    @Column(name = "phone", length = 15, nullable = false)
+    @Column(name = "phone", length = 15, nullable = false, unique = true)
     private String phone;
 
     @ManyToMany

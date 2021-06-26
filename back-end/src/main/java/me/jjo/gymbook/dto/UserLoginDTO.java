@@ -1,6 +1,7 @@
 package me.jjo.gymbook.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;
@@ -18,6 +19,7 @@ public class UserLoginDTO {
     private String phone;
 
     @NotNull
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Size(min = 3, max = 100)
     private String password;
 }

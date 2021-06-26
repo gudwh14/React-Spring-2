@@ -1,6 +1,5 @@
 package me.jjo.gymbook.config;
 
-import lombok.RequiredArgsConstructor;
 import me.jjo.gymbook.jwt.JwtAccessDeniedHandler;
 import me.jjo.gymbook.jwt.JwtAuthenticationEntryPoint;
 import me.jjo.gymbook.jwt.JwtSecurityConfig;
@@ -23,14 +22,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 @Order(Ordered.HIGHEST_PRECEDENCE)
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
     private final TokenProvider tokenProvider;
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
     private final UserJpaRepository userJpaRepository;
 
     @Autowired
-    public SecurityConfig (
+    public UserSecurityConfig(
             TokenProvider tokenProvider,
             JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint,
             JwtAccessDeniedHandler jwtAccessDeniedHandler,
@@ -64,8 +63,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http    // 토큰을 사용하기 때문에 csrf 는 disable
                 .csrf().disable()
+                .httpBasic()
 
                 // Exception 핸들러로 우리가 만들었던 핸들러들 추가
+                .and()
                 .exceptionHandling()
                 .authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 .accessDeniedHandler(jwtAccessDeniedHandler)
@@ -83,7 +84,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .requestMatchers()
-                .antMatchers("/user/login")
+                .antMatchers("/user/**")
 
                 .and()
                 .authorizeRequests()

@@ -28,17 +28,18 @@ import java.net.URI;
 @RequestMapping("/user")
 public class UserController {
     private final TokenProvider tokenProvider;
-    private final AuthenticationManager authenticationManager;
     private final CustomUserDetailsService customUserDetailsService;
+    private final AuthenticationManager authenticationManager;
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
     public UserController(TokenProvider tokenProvider,
                           CustomUserDetailsService customUserDetailsService,
-                          AuthenticationManager authenticationManager) {
+                          AuthenticationManager authenticationManager){
         this.tokenProvider = tokenProvider;
         this.customUserDetailsService = customUserDetailsService;
+
         this.authenticationManager = authenticationManager;
     }
 

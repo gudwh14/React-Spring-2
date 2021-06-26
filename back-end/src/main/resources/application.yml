@@ -30,3 +30,5 @@ jwt:
   token-validity-in-seconds: 86400 # 토큰 만료시간
 
 spring.jpa.defer-datasource-initialization: true
+
+spring.main.allow-bean-definition-overriding: true

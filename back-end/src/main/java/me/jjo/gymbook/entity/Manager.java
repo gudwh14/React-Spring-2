@@ -43,11 +43,12 @@ public class Manager {
     private Set<Authority> authorities;
 
     @Builder
-    public Manager(String gymName, String password, String gymType, String location, String phone) {
+    public Manager(String gymName, String password, String gymType, String location, String phone, Set<Authority> authorities) {
         this.gymName = gymName;
         this.password = password;
         this.gymType = gymType;
         this.location = location;
         this.phone = phone;
+        this.authorities = authorities;
     }
 }
